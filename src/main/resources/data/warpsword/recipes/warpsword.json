@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " # ",
+    " # ",
+    " S "
+  ],
+  "key": {
+    "#": {
+      "item": "warpsword:warpshard"
+    },
+    "S" :  {
+      "item": "minecraft:stick"
+    }
+  },
+
+  "result": {
+    "item": "warpsword:warpsword",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "rift_jump": {
+    "sounds": [
+      {
+        "name": "warpsword:rift_jump",
+        "stream": false
+      }
+    ]
+  },
+  "rift_pop_out": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "warpsword:rift_pop_out",
+        "stream": false
+      }
+    ]
+  }
+
+
+
+
+}

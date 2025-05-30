@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DND",
+    "NEN",
+    "DND"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "D" :  {
+      "item": "minecraft:diamond_block"
+    },
+    "N" :  {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+
+  "result": {
+    "item": "warpsword:warpshard",
+    "count": 1
+  }
+}
