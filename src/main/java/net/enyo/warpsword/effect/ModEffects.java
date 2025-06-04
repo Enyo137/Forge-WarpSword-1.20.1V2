@@ -11,4 +11,7 @@ public class ModEffects {
 
     // Register your black and white effect here
     public static final RegistryObject<MobEffect> BLACK_WHITE = EFFECTS.register("black_white", BlackWhiteEffect::new);
+
+
+
 }

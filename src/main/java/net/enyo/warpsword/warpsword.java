@@ -2,16 +2,13 @@ package net.enyo.warpsword;
 
 import com.mojang.logging.LogUtils;
 import net.enyo.warpsword.effect.ModEffects;
+import net.enyo.warpsword.handler.ModEntities;
 import net.enyo.warpsword.item.ModItems;
 import net.enyo.warpsword.sound.ModSounds;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -31,17 +28,17 @@ public class warpsword {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModEntities.register(modEventBus);
+        ModSounds.SOUNDS.register(modEventBus);
+        ModEffects.EFFECTS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
-
-        MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
 
-        ModSounds.SOUNDS.register(FMLJavaModLoadingContext.get().getModEventBus());
-
-        ModEffects.EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
-
+        MinecraftForge.EVENT_BUS.register(this);
     }
+
+
 
     private void commonSetup(final FMLCommonSetupEvent event) {
 

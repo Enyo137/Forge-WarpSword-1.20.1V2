@@ -9,30 +9,29 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = warpsword.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class ClientEffectOverlay {
+public class ShaderFlashHandler {
 
     private static final ResourceLocation BLACK_WHITE_SHADER =
-            new ResourceLocation(warpsword.MOD_ID, "shaders/post/impact_frame.json");
+            new ResourceLocation(warpsword.MOD_ID, "shaders/post/black_white.json");
 
-    private static boolean shaderActive = false;
+    private static int timer = 0;
+
+    public static void triggerBlackWhiteEffect(int durationTicks) {
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.level != null) {
+            mc.gameRenderer.loadEffect(BLACK_WHITE_SHADER);
+
+            timer = durationTicks;
+        }
+    }
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
-        Minecraft mc = Minecraft.getInstance();
-        if (event.phase != TickEvent.Phase.END || mc.player == null || mc.level == null) return;
-
-        boolean hasEffect = mc.player.hasEffect(ModEffects.BLACK_WHITE.get());
-
-        if (hasEffect && !shaderActive) {
-            mc.gameRenderer.loadEffect(BLACK_WHITE_SHADER);
-            shaderActive = true;
-        } else if (!hasEffect && shaderActive) {
-            mc.gameRenderer.shutdownEffect();
-            shaderActive = false;
-
-
+        if (event.phase == TickEvent.Phase.END && timer > 0) {
+            timer--;
+            if (timer == 0) {
+                Minecraft.getInstance().gameRenderer.shutdownEffect();
+            }
         }
-
     }
-
 }
